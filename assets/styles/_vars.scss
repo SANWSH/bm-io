@@ -1,0 +1,39 @@
+@use "sass:math";
+$bg-primary_1: #1a1c1e;
+$bg-primary_2: #191a1c;
+$col-primary: #191a1c;
+$col-accent: #fe8349;
+$col-accent-start: #f94f2b;
+$col-exchange_1: #22252a;
+$col-exchange_2: #191b20;
+$col-banner: #1a1c21;
+
+$col-primary-1: #2a2d34;
+$col-primary-2: #4f545a;
+
+$col-secondary-1: #22252a;
+$col-secondary-2: #191b20;
+
+$col-tertiary-1: #272a2f;
+$col-tertiary-2: #191d24;
+
+$col-cards-1: #fb7844;
+$col-cards-2: #4f545a;
+
+$col-transparent-white: #ffffff1a;
+$col-semitrans-white: #ffffff80;
+
+$col-tab-secondary: #3e4146;
+
+@mixin toRem($property, $value) {
+  #{$property}: math.div($value, 16) + rem;
+}
+@mixin toRem2Values($property, $val1, $val2) {
+  #{$property}: math.div($val1, 16) + rem math.div($val2, 16) + rem;
+}
+@mixin toRem4Values($property, $val1, $val2, $val3, $val4) {
+  #{$property}: math.div($val1, 16) + rem math.div($val2, 16) + rem math.div($val3, 16) + rem math.div($val4, 16) + rem;
+}
+@mixin shadow($x, $y, $blur, $spread, $color, $alpha) {
+  box-shadow: $x $y $blur $spread rgba($color, $alpha);
+}
