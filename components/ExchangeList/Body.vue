@@ -46,12 +46,6 @@ function multiply(value) {
     return value * store.selectedGetItem.course
 }
 
-const valueComputed = computed({
-    get: () => store.exchanger.to,
-    set: () => store.exchanger.get * store.selectedGetItem.course  
-})
-
-
 </script>
 <template>
     <div class="wrapper h-full">
@@ -121,23 +115,10 @@ const valueComputed = computed({
             <div :id="'exchange-' + id" v-if="id === 2">
                 <misc-spinner v-if="!store.currency || !store.currencyOperations"/>
                 <div class="exchange-body-currency-items" v-if="store.currency && store.currencyOperations">
-                    <div 
+                    <exchange-list-body-item 
                     v-for="curr in store.currency.data" 
-                    class="currency group" 
                     :key="curr.id" 
-                    v-show="!!searchContent? curr.attributes.payment_name.toLowerCase().includes(searchContent) 
-                            || curr.attributes.iso_code.toLowerCase().includes(searchContent) : true"
-                    :class="[
-                        filterCurrency, 
-                        curr.id === store.selectedGiveItem.id? 'active' : curr.attributes.name === store.selectedGetItem.name? 'ghost' : ''
-                        ]"
-                    @click.prevent="store.selectedGiveItem.apply(curr)" 
-                    :id="curr.id">
-                    <img :src="getSvgUrl('Bitcoin_thumbnail')" :alt="curr.payment_name" class="currency-icon"
-                        :class="[store.getSelectedItem(isGetChanger).id === curr.id? 'active' : '', 
-                        store.getSelectedItem(!isGetChanger).id === curr.id? 'disabled' : '',]"/>
-                        <div class="currency-title">{{ curr.attributes.payment_name }}</div>
-                    </div>
+                    :content="curr" />
                 </div>
             </div>
             <!-- currency list GET -->
@@ -216,7 +197,9 @@ const valueComputed = computed({
         display: none;
     }
     .icon-text{
-        @apply font-semibold select-none uppercase
+        user-select: none;
+        pointer-events: none;
+        text-transform: uppercase;
     }
 </style>
 <style lang="scss" scoped>
