@@ -8,7 +8,7 @@ const tabs = [
 </script>
 <template>
   <aside class="aside-panel">
-    <div class="aside-info">
+    <div class="aside-info drop-shadow-base">
       <h1 class="font-semibold text-2xl">Всего бонусов</h1>
       <span class="aside-info-value text-[40px]">10 000 ₽</span>
       <small class="text-white text-opacity-50">Вывод доступен от 100₽</small>

@@ -1,5 +1,5 @@
 <template>
-  <div class="exchange-card shadow-xl shadow-[#00000020] relative" >
+  <div class="exchange-card drop-shadow-base relative" >
     <slot/>
   </div>
 </template>
@@ -10,8 +10,13 @@
 
 <style lang="scss" scoped>
     .exchange-card {
-        @apply flex flex-col bg-gradient-to-t from-[#22252A] to-[#191B20] rounded-2xl p-5 gap-[1.25rem];
-        font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to bottom, $col-secondary_1, $col-secondary-2);
+      @include toRem(border-radius, 15);
+      @include toRem(padding, 20);
+      @include toRem(gap, 20);
+      font-size: 16px;
     }
     
 </style>

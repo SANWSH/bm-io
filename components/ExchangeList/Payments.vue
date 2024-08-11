@@ -25,7 +25,7 @@ const store = useCurrencyStore()
 </script>
 <template>
     <div class="wrapper h-full">
-        <h3 class="title-x">Выберите платежную систему</h3>
+        <h3 class="title-l">Выберите платежную систему</h3>
         <div 
         class="exchange-body-currency-wrapper" 
         @click="focusElement($event, 'search_' + id)">
@@ -112,8 +112,5 @@ const store = useCurrencyStore()
 <style lang="scss" scoped>
     .wrapper{
         @apply flex flex-col gap-[.625rem] h-full
-    }
-    small{
-        @apply font-normal text-base opacity-50
     }
 </style>

@@ -11,22 +11,13 @@
       "hero change2 change3"
       "total total total" !important;
   }
-  .wrapper[data-v-8f9241c7].Primary {
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
-  }
 }
 @media screen and (max-width: 1024px) {
+  body {
+    @include toRem(padding, 10);
+  }
   .exchange-card.hero {
     display: flex !important;
-  }
-  .wrapper[data-v-68d04409] {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    grid-template-areas:
-      "hero hero"
-      "change2 change3"
-      "total total" !important;
   }
   .exchange-info {
     flex-direction: column;

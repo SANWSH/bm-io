@@ -265,6 +265,20 @@ html {
     width: 100vw;
 }
 
+.drop-shadow {
+    &-base {
+        box-shadow: 0 11px 38.5px 0px rgba(black, 0.4);
+    }
+}
+.border-rounded {
+    @include toRem(border-radius, 15);
+}
+.basis {
+    &-96 {
+        flex-basis: 24rem;
+    }
+}
+
 @keyframes spin {
     100% {
         transform: rotate(360deg);
