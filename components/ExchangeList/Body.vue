@@ -51,6 +51,7 @@ const valueComputed = computed({
     set: () => store.exchanger.get * store.selectedGetItem.course  
 })
 
+
 </script>
 <template>
     <div class="wrapper h-full">
