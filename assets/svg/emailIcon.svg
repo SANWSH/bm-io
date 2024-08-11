@@ -1,0 +1,11 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="mail-svgrepo-com 1">
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M25 5C27.0711 5 28.75 6.67894 28.75 8.75V21.25C28.75 23.3211 27.0711 25 25 25H5C2.92894 25 1.25 23.3211 1.25 21.25V8.75C1.25 6.67894 2.92894 5 5 5H25ZM24.0661 7.5H5.93397L14.2255 14.0459C14.6796 14.4045 15.3204 14.4045 15.7746 14.0459L24.0661 7.5ZM3.75 8.961V21.25C3.75 21.9404 4.30965 22.5 5 22.5H25C25.6904 22.5 26.25 21.9404 26.25 21.25V8.96102L17.3236 16.0081C15.9612 17.0838 14.0387 17.0838 12.6764 16.0081L3.75 8.961Z" fill="url(#paint0_linear_26_861)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_26_861" x1="15" y1="5" x2="15" y2="25" gradientUnits="userSpaceOnUse">
+<stop stop-color="#22252A"/>
+<stop offset="1" stop-color="#191B20"/>
+</linearGradient>
+</defs>
+</svg>

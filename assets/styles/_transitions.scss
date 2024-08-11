@@ -1,0 +1,64 @@
+.fade-enter-active {
+  transition: all 0.3s;
+  transform: translateX(50%);
+}
+.fade-leave-active {
+  transition: all 0.3s;
+  opacity: 0 !important;
+  transform: translateX(50%);
+  position: absolute !important;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0 !important;
+}
+
+.dropdown-enter-active,
+.dropdown-leave-active {
+}
+
+.dropdown-enter,
+.dropdown-leave-to {
+  transition: height 0.3s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+.sideIn-enter-active {
+  transition: all 0.3s ease;
+  transform: translateX(100%);
+}
+.sideIn-leave-active {
+  transition: all 0.3s ease;
+  transform: translateX(-100%);
+}
+
+.sideIn-enter-to {
+  transition: all 0.3s ease;
+  transform: translateX(0%);
+}
+.sideIn-leave-to {
+  transition: all 0.3s ease;
+  transform: translateX(100%);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.appearance-enter-active {
+  transition: all 0.3s;
+  opacity: 0;
+}
+.appearance-leave-active {
+  transition: all 0.3s;
+  opacity: 1;
+}
+
+.appearance-enter-to {
+  transition: all 0.3s;
+  opacity: 1;
+}
+.appearance-leave-to {
+  transition: all 0.3s;
+  opacity: 0;
+}
