@@ -124,6 +124,7 @@ const scores = [
   {data: 20, type:null, title:'Всего рефералов', id: 2},
 ]
 const tableHeaders = ['Дата создания', 'ID Заявки', 'Направление', 'Клиент', 'Бонус']
+const tableContent = ['08.07.23', '124123515', 'Направление', 'Name', '2$']
 
 onMounted(() => {
   getDate()
@@ -186,41 +187,19 @@ onMounted(() => {
             :options="chartOptions"
             :redrawOnUpdate="true"
           ></highchart>
-          <application-list :items="applications"/>
-          <div class="application" v-if="currentTab === 'operations'">
-              <!-- TODO: make applications component -->
-              <div class="application-item" v-for="item in 10" :key="item">
-                <div class="application-currency">
-                  <img :src="getSvgUrl('Bitcoin_thumbnail')" alt="" width="50">
-                  <img :src="getSvgUrl('arrowToTopRight')" alt="" class="rotate-45" width="12">
-                  <img :src="getSvgUrl('Bitcoin_thumbnail')" alt="" class="disabled" width="50">
-                </div>
-                <div class="application-info">
-                  <u class="text-white text-opacity-50">Заявка №1701693628466</u>
-                  <div class="application-info-exchange">
-                    <div class="info-change-wrapper">
-                      <img v-show="true" :src="getSvgUrl('Bitcoin_thumbnail')" alt="" width="50">
-                      <span>0.0003 BTC</span>
-                    </div>
-                    <img :src="getSvgUrl('arrowToTopRight')" alt="" class="rotate-45" width="12">
-                    <div class="info-change-wrapper">
-                      <img v-show="true" :src="getSvgUrl('Bitcoin_thumbnail')" alt="" width="50">
-                      <span>1120.47 RUB</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="application-result">
-                  <span class="text-white text-opacity-50">04 декабря 2023, 15:40</span>
-                  <span class="text-[#FF4E67] font-semibold">Заявка отклонена. Платеж не поступил</span>
-                </div>
-              </div>
-            </div>
-
+          <application-list :items="applications" v-if="currentTab === 'operations'"/>
           <div class="cashback" v-if="currentTab === 'cashback'">
-            <div class="cashback-item">
-              <span class="text-white text-opacity-50" v-for="header in tableHeaders" :key="header">
-                {{header}}
-              </span>
+            <div class="cashback-item" v-for="item in 10" :key="item">
+              <div class="cashback-header">
+                <span class="typography-m-thin" v-for="header in tableHeaders" :key="header">
+                  {{header}}
+                </span>
+              </div>
+              <div class="cashback-body">
+                <span class="typography-m" v-for="content in tableContent" :key="content">
+                  {{content}}
+                </span>
+              </div>
               <span></span>
             </div>
             <div class="cashback-item" v-for="item in 10" :key="item">
@@ -233,6 +212,42 @@ onMounted(() => {
 <style lang="scss" scoped>
   .application{
     height: calc((100vh - (100vh - 104px)) * 5);
+  }
+  .cashback-header, .cashback-body{
+    display: flex;
+    gap: 20px;
+    &:nth-child(1){
+      opacity: .5;
+    }
+    &>span:nth-child(1) {
+      display: flex;
+      flex-basis: 124px 0;
+    }
+    &>span:nth-child(2) {
+      display: flex;
+      flex-basis: 114px 0;  
+    }
+    &>span:nth-child(3) {
+      display: flex;
+      flex-basis: 220px 0;  
+    }
+    &>span:nth-child(4) {
+      display: flex;
+      flex-basis: 420px 0;  
+    }
+    &>span{
+      width: 100%;
+    }
+  }
+  .cashback{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cashback-item{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 </style>
 <style lang="scss">

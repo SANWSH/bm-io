@@ -21,7 +21,7 @@ defineEmits(['value:ChangePosition'])
 <template>
   <exchange-wrapper :class="id === 1? 'background-hero' : ''">
     <div class="exchange-header flex" v-if="items">
-        <h1 class="exchange-header-title">{{ title }}</h1>
+        <h1 class="title-l">{{ title }}</h1>
         <div class="exchange-header-wrapper" v-if="id === 3">
           <component v-for="(item,i) in items" :key="i" 
           :is="item.is" 

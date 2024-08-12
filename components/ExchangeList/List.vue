@@ -6,7 +6,7 @@
                 <p class="text-1 text-white text-opacity-50">А так же совершенно анонимно</p>
                 <div class="frame mt-auto h-max flex relative self-center p-1 items-center border-white border-opacity-20 border rounded-2xl">
                     <b-button 
-                    class="text-2xl font-bold"
+                    class="typography-x"
                     type="Primary" 
                     size="M" 
                     text="Оставить отзыв"/>    
@@ -82,7 +82,7 @@
                     type="Primary" 
                     size="FULL" 
                     :class="isChecked ? '' : 'disabled'"
-                    class="text-2xl font-bold"/>
+                    class="typography-x"/>
                 </misc-b-frame>
                 <confirm-modal v-show="false"/>
         </exchange-list-wrapper>

@@ -1,5 +1,5 @@
 <template>
-<div class="trade-info basis-60 h-max">
+<div class="trade-info basis-60 h-max drop-shadow-base">
   <span class="text-white text-opacity-50 w-full">Резерв валют</span>
   <div class="flex rounded-2xl relative w-full" >
       <div class="flex flex-col gap-3 w-full">

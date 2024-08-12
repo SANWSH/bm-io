@@ -1,5 +1,5 @@
 <template>
-<div class="trade-info basis-96 h-max">
+<div class="trade-info basis-96 h-max drop-shadow-base border-rounded">
   <span class="text-white text-opacity-50">Последние обмены</span>
     <div class="flex p-5 rounded-2xl relative bg-gradient-to-br from-[#2A2D34] to-[#4F545A]" >
       <div class="flex flex-col">

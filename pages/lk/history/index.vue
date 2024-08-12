@@ -31,7 +31,8 @@ const mocks = {
         </div>
         <div class="application">
           <!-- TODO: To make applications component -->
-          <div class="application-item" v-for="item in 10" :key="item">
+           <application-list :items="[1,2,3]"/>
+<!--           <div class="application-item" v-for="item in 10" :key="item">
             <div class="application-currency">
               <img :src="getSvgUrl('Bitcoin_thumbnail')" alt="" width="50">
               <img :src="getSvgUrl('arrowToTopRight')" alt="" class="rotate-45" width="12">
@@ -55,7 +56,7 @@ const mocks = {
               <span class="text-white text-opacity-50">04 декабря 2023, 15:40</span>
               <span class="text-[#FF4E67] font-semibold">Заявка отклонена. Платеж не поступил</span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

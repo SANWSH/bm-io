@@ -1,12 +1,47 @@
 <script setup>
 import MiscBInput from '~/components/Misc/BInput.vue'
 import {placeholder as mocks} from '../placeholder'
+import { reactive } from 'vue';
 const form = ref(null)
 
 function showForm() {
   form.value.classList.toggle('active')
 }
 
+//#region upload preview logic
+const uploaded = reactive([])
+
+function createObject(name, source, size) {
+  return { name, source, size };
+}
+
+function deleteCurrentFile(e) {
+  const index = e.dataset.index;
+  uploaded.splice(index, 1);
+}
+
+function addImage(event) {
+  const file = event.target.files[0]
+  console.log(file.size);
+
+  if (file.size > 5.24e+6) {
+    alert('Невозможно прикрепить файл: Размер файла не должен первышать 5mb')
+    return
+  }
+  
+  const reader = new FileReader();
+  
+  reader.onload = () => {
+    const imageUrl = reader.result;
+
+    let fileObject = createObject(file.name, imageUrl, file.size)
+    uploaded.push(fileObject);
+    console.log(uploaded);
+  }
+  
+  reader.readAsDataURL(file);
+}
+//#endregion
 </script>
 <template>
   <div class="verify-page">
@@ -37,10 +72,27 @@ function showForm() {
             placeholder="Номер карты"
             :is-active="false"
             />
-            <button class="b-button addPhoto"> 
+            <input type="file" 
+            id="fileInput" 
+            ref="fileExplorer" 
+            accept="image/png, image/jpeg, image/gif, image/webp"
+            hidden 
+            @change="addImage($event)"/>
+            <button class="b-button addPhoto" @click="$refs.fileExplorer.click()"> 
               <img :src="getSvgUrl('photo')" alt="">
               Загрузите фотографию для верификации
             </button>
+            <div class="uploaded-files">
+              <div 
+              class="uploades-wrapper"
+              :data-index="i"
+              :style="`background-image: url(${img.source})`" 
+              v-for="img, i in uploaded" 
+              :key="i"
+              @click="deleteCurrentFile($event.target)">
+                <span class="typography-s" style="text-wrap:pretty;">{{ img.name }}</span>
+              </div>
+            </div>
             <b-button type="Primary" size="M" text="Сохранить" class="mx-auto"/>
           </form>
       </div>
@@ -160,5 +212,46 @@ function showForm() {
       height: auto;
       flex-basis: 100%;
     }
+  }
+  .uploaded-files{
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+    width: 100%;
+    &>.uploades-wrapper>span{
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+    }
+    &>.uploades-wrapper:hover>img{
+
+    }
+  }
+  .uploades-wrapper:hover::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(~/assets/svg/delete.svg);
+    background-color: rgba(red, .2) ;
+    background-position: center;
+    background-size: 32px;
+    z-index: 100;
+    backdrop-filter: blur(10px) grayscale(100%);
+    border-radius: 15px;
+    inset: 0;
+    pointer-events: none;
+    translate: all .2s ease;
+  }
+  .uploades-wrapper:hover{
+      cursor: pointer;
+  }
+  .uploades-wrapper{
+    position: relative;
+    width: 128px;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-size: cover;
+    @include toRem(border-radius, 15)
   }
 </style>

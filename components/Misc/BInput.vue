@@ -8,7 +8,7 @@
     :class="`exchange-body-input w-full`" 
     :placeholder="placeholder" 
     :type="inputType === 'primaryA' ? 'number' : 'text'"
-    :disabled="isActive === false? true : false"
+    :disabled="isActive? true : false"
     :value="modelValue || inputValue" 
     :name="name"
     @input="$emit('update:modelValue', $event.target.value)"
@@ -60,11 +60,6 @@ const refInput = ref<HTMLElement | null>(null)
 
 function setFocus(item:HTMLElement) {
   item.focus()
-}
-
-function inputEvent(value:string):void {
-  onlyNumbers(value)
-  emit('update:modelValue', value)
 }
 
 </script>
