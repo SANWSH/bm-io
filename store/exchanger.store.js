@@ -32,14 +32,14 @@ export const useCurrencyStore = defineStore('currencyStore', () => {
     get: 0
   })
 
-  const calculatedGive = computed({
+/*   const calculatedGive = computed({
     get() {
       return exchanger.to
     },
     set() {
       return exchanger.get * selectedGetItem.course
     }
-  })
+  }) */
 
   const selectedGiveItem = reactive(
   {
@@ -206,7 +206,6 @@ async function _init()
     {
         currency.value = await fetchCurrencyData();
         currencyOperations.value = await fetchAllOperations();
-        currencyOperationDetails.value = await fetchOperationDetails();
 
         console.log(currencyOperations.value);
         
@@ -317,7 +316,6 @@ function _setSelectedValues(itemIndex = 0) {
     refreshData,
     currency,
     changeOperationsList,
-    getOperationsDetails,
     currencyOperations,
     currencyOperationDetails,
     cleanedCurrencyList,
@@ -328,7 +326,6 @@ function _setSelectedValues(itemIndex = 0) {
     currentTab,
     getString,
     details,
-    exchanger,
-    calculatedGive
+    exchanger
   }
 })

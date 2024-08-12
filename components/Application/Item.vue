@@ -1,10 +1,8 @@
 <script setup>
-import { onMounted } from 'vue';
-
   const props = defineProps({
-    number: String,
+    number: Number,
     status: Number,
-    date: String,
+    date: Date,
     currencyAmount: Array,
     currencyCode: Array
   })
@@ -13,11 +11,9 @@ import { onMounted } from 'vue';
     return props.status === 1? "Успешно! Платеж прошел" : props.status === 0? "Заявка отклонена. Платеж не поступил" : "Заявка в обработке"
   })
 
-  const exchange = reactive({From: null, To: null})
-  
-  onMounted(() => {
-    exchange.From = currencyAmount[0] + " " + currencyCode[0],
-    exchange.To = currencyAmount[1] + " " + currencyCode[1],
+  const exchange = reactive({
+    From:  props.currencyAmount[0].toLocaleString("ru-RU") + " " + props.currencyCode[0],
+    To: props.currencyAmount[1].toLocaleString("ru-RU") + " " + props.currencyCode[1]
   })
 
 </script>
@@ -29,7 +25,7 @@ import { onMounted } from 'vue';
         <img :src="getSvgUrl('Bitcoin_thumbnail')" alt="" class="disabled" width="50">
     </div>
       <div class="application-info">
-        <u class="text-white text-opacity-50">Заявка №{{applicationNumber}}</u>
+        <u class="text-white text-opacity-50">Заявка №{{number}}</u>
         <div class="application-info-exchange">
           <div class="info-change-wrapper">
             <img v-show="true" :src="getSvgUrl('Bitcoin_thumbnail')" alt="" width="50">

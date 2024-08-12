@@ -59,7 +59,7 @@ const selectOption = (option) => {
   border: none;
   padding: 10px;
   cursor: pointer;
-  @include toRem2Values(padding, 24, 20);
+  @include toRem2Values(padding, 23, 20);
   @include toRem(border-radius, 15);
   &>input{
     background: transparent;
