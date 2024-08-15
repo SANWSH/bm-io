@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-  import miscSpinner from '~/components/misc/spinner.vue'
+  import miscSpinner from '~/components/Misc/spinner.vue'
   const router = useRouter()
   const route = useRoute()
   onMounted(() => {
