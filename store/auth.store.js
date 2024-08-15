@@ -1,7 +1,3 @@
-
-export const useAuthStore = defineStore('auth', function() {
-
-    return {
-
-    }
-})
+export const useAuthStore = defineStore("auth", function () {
+  return {};
+});
