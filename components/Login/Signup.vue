@@ -1,7 +1,7 @@
 <template>
   <div class="login-form">
     <div class="login-header">
-      <b class="text-white text-opacity-50">Добро пожаловать! Создайте аккаунт</b>
+      <b class="text-white text-opacity-50 select-none">Добро пожаловать! Создайте аккаунт</b>
       <img :src="getSvgUrl('close')" alt="" @click="global.closeModal()">
     </div>
     <form @submit.prevent class="login-send-form">
@@ -22,7 +22,7 @@
       </misc-b-frame>
     </form>
     <div class="login-link">
-      <p class="text-white text-opacity-50">Уже есть аккаунт?
+      <p class="text-white text-opacity-50 select-none">Уже есть аккаунт?
         <u class="cursor-pointer" @click="$emit('onLogInClick')">Войдите</u>
       </p>
     </div>

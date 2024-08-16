@@ -13,13 +13,18 @@ function onOutsideClick(e) {
 </script>
 <template>
   <div id="modal" class="overlay" ref="target" @mousedown="onOutsideClick($event.target.id)">
-    <slot/>
+    <slot />
   </div>
 </template>
 
 <style scoped>
-  .overlay{
-    inset:0!important;
-    transform: translateX(0px)!important;
-  }
+.overlay {
+  inset: 0 !important;
+  transform: translateX(0px) !important;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
 </style>
