@@ -57,6 +57,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
     "nuxt-highcharts",
+    "@nuxt/eslint",
     [
       "@vee-validate/nuxt",
       {
@@ -107,6 +108,8 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  eslint: {},
 
   compatibilityDate: "2024-08-06",
 });
