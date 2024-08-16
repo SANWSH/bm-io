@@ -17,8 +17,14 @@
       </div>
     </div>
     <div class="buttonsBlock">
-      <b-button size="S" type="Link" text="Войти" />
-      <b-button size="S" type="Primary" text="Регистрация" />
+      <b-button type="Link" size="S" text="Войти" @click="gl.openModal((e) => {
+        gl.identifyModal(e)
+        gl.loginFormType = 'SignIn'
+      }, 'login')" />
+      <b-button class="button" size="S" type="Primary" text="Регистрация" @click="gl.openModal((e) => {
+        gl.identifyModal(e)
+        gl.loginFormType = 'SignUp'
+      }, 'login')" />
     </div>
     <div class="mobileUnderBlock">
       <div class="logoTextMobile">
@@ -30,11 +36,20 @@
         <img src="~/assets/svg/ad_edible.svg" class="adLogo" alt="ad">
       </div>
     </div>
+    <teleport to="#teleports">
+      <transition name="appearance">
+        <Modal v-if="gl.isModalOpen">
+          <login v-if="gl.isModalOpen && gl.currentModal === 'login'" :type="gl.loginFormType"
+            @on-log-in-click="gl.changeLogInType()" />
+        </Modal>
+      </transition>
+    </teleport>
   </div>
 </template>
 
 <script setup lang="ts">
 // import { ref } from 'vue';
+import { useGlobalStore } from '../../store/global.store';
 
 interface IFooterProps {
   items: unknown[]
@@ -42,6 +57,8 @@ interface IFooterProps {
 defineProps<IFooterProps>()
 
 // const isOpen = ref<boolean>(false)
+
+const gl = useGlobalStore()
 
 const date: number = new Date().getFullYear()
 // const handleClose = () => {
@@ -59,14 +76,12 @@ const date: number = new Date().getFullYear()
 .container {
   border-radius: 15px 15px 0px 0px;
   background: linear-gradient(90deg, #212429 1.54%, #191D20 100.86%);
-  padding: 40px 40px 40px 40px;
+  padding: 40px;
   display: flex;
   font-size: 16px;
   font-style: normal;
   line-height: normal;
   align-items: center;
-  margin-left: -40px;
-  margin-right: -40px;
   margin-top: 2rem;
 }
 

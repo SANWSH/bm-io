@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <nuxt-link to="/"><img src="@/assets/svg/logo.svg" class="logo" alt="logo" ></nuxt-link>
+        <nuxt-link to="/"><img src="@/assets/svg/logo.svg" class="logo" alt="logo"></nuxt-link>
         <img v-if="screenLaptop" id="burger" src="@/assets/svg/menuBar.svg" class="menuBar" alt="menu" @click="($event) => {
             if (gl.currentModal !== $event.target.id) {
                 gl.openModal((e) => gl.identifyModal(e), $event.target.id)
