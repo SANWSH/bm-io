@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="select-none">
     <label :for="`checkbox`">
-      <div :class="`input-custom relative flex ${isChecked ? 'active' : ''}`" @click.prevent="setActive()">
-        <input type="checkbox" :id="`checkbox`" ref="test" class="opacity-20" :checked="isChecked">
+      <div :class="`input-custom relative flex ${isChecked ? 'active' : ''} cursor-pointer`"
+        @click.prevent="setActive()">
+        <input type="checkbox" :id="`checkbox`" ref="test" class="opacity-20 cursor-pointer" :checked="isChecked">
       </div>
       <span>{{ label }}
         <NuxtLink v-if="link" :to="link">
@@ -56,14 +57,14 @@ label {
 }
 
 .input-custom {
-  @apply w-4 h-4 p-2 border border-white border-opacity-10 bg-transparent bg-opacity-50 rounded-lg p-3 transition-all hover:bg-white hover:bg-opacity-10 active:scale-[.85];
+  @apply w-4 h-4 border border-white border-opacity-10 bg-transparent bg-opacity-50 rounded-lg p-3 transition-all hover:bg-white hover:bg-opacity-10 active:scale-[.85];
 
   &::after {
     content: '';
     background-image: url('~/assets/svg/acceptIcon.svg'), linear-gradient(-45deg, $col-accent, $col-cards-1, $col-accent);
     background-position: center;
     background-size: cover;
-    @apply absolute w-full h-full scale-0 bg-orange-500 bg-opacity-75 rounded inset-0 transition-all
+    @apply absolute w-full h-full scale-0 bg-orange-500 bg-opacity-75 rounded inset-0 transition-all cursor-pointer
   }
 
   &.active::after {
