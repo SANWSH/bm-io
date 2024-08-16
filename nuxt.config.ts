@@ -2,8 +2,8 @@ export default defineNuxtConfig({
   //Head
   app: {
     head: {
-      viewport: 'width=360, initial-scale=1'
-    }
+      viewport: "width=360, initial-scale=1",
+    },
   },
 
   // Disable server-side rendering (SSR)
@@ -12,12 +12,12 @@ export default defineNuxtConfig({
   // Configure image settings
   image: {
     // Set the directory for images
-    dir: 'assets/images'
+    dir: "assets/images",
   },
 
   // Enable devtools
-  devtools: { 
-    enabled: true 
+  devtools: {
+    enabled: true,
   },
 
   // Configure PostCSS plugins
@@ -25,9 +25,9 @@ export default defineNuxtConfig({
     plugins: {
       // Use Tailwind CSS with a custom configuration file
       tailwindcss: {
-        configs: './tailwind.config.js'
+        configs: "./tailwind.config.js",
       },
-      
+
       // Use Autoprefixer
       autoprefixer: {},
     },
@@ -35,59 +35,62 @@ export default defineNuxtConfig({
 
   // Enable TypeScript type checking
   typescript: {
-    typeCheck: false
+    typeCheck: false,
   },
 
   // Configure runtime settings
   runtimeConfig: {
     public: {
       // Set the API token from an environment variable
-      api_token: process.env.API_TOKEN
-    }
+      api_token: process.env.API_TOKEN,
+    },
   },
 
   // Import global CSS files
-  css: ['~/assets/styles/main.scss', '~/assets/styles/tailwind.css'],
+  css: ["~/assets/styles/main.scss", "~/assets/styles/tailwind.css"],
 
   // Enable Nuxt modules
   modules: [
-    '@pinia/nuxt',
-    '@vueuse/nuxt',
+    "@pinia/nuxt",
+    "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "nuxt-swiper",
     "nuxt-highcharts",
-    ['@vee-validate/nuxt', {
-      componentNames: {
-          Form: 'VeeForm',
-          Field: 'VeeField',
-          FieldArray: 'VeeFieldArray',
-          ErrorMessage: 'VeeErrorMessage',
+    [
+      "@vee-validate/nuxt",
+      {
+        componentNames: {
+          Form: "VeeForm",
+          Field: "VeeField",
+          FieldArray: "VeeFieldArray",
+          ErrorMessage: "VeeErrorMessage",
+        },
       },
-    }],
+    ],
   ],
 
   // Configure Pinia settings
   pinia: {
     // Set the directory for Pinia stores
-    storesDirs: ['./store/**']
+    storesDirs: ["./store/**"],
   },
 
   swiper: {
     // Swiper options
     //----------------------
-    prefix: 'Swiper',
-    styleLang: 'scss',
+    prefix: "Swiper",
+    styleLang: "scss",
   },
 
   // Define an alias for the images directory
   alias: {
-    "@images": './assets/images',
+    "@images": "./assets/images",
   },
 
   server: {
     port: 3000,
-    host: 'secretHost',
+    host: "secretHost",
   },
 
   routeRules: {
@@ -99,11 +102,11 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "sass:math"; @import "~/assets/styles/_vars";'
-        }
-      }
-    }
+          additionalData: '@use "sass:math"; @import "~/assets/styles/_vars";',
+        },
+      },
+    },
   },
 
-  compatibilityDate: '2024-08-06'
-})
+  compatibilityDate: "2024-08-06",
+});
