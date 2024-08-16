@@ -4,16 +4,16 @@
       <b class="text-white text-opacity-50 select-none">Добро пожаловать! Войдите в личный кабинет</b>
       <img :src="getSvgUrl('close')" alt="" @click="global.closeModal()">
     </div>
-    <form @submit.prevent class="login-send-form h-[565px] flex flex-col">
-      <Misc-BInput name="email" v-model="account.email" inputType="primary" placeholder="Введите e-mail:"
-        :isActive="true" />
-      <Misc-BInput name="password" v-model="account.password" inputType="primary" placeholder="Введите пароль"
-        :isActive="true" />
+    <form class="login-send-form h-[565px] flex flex-col" @submit.prevent>
+      <Misc-BInput v-model="account.email" name="email" input-type="primary" placeholder="Введите e-mail:"
+        :is-active="true" />
+      <Misc-BInput v-model="account.password" name="password" input-type="primary" placeholder="Введите пароль"
+        :is-active="true" />
       <div v-if="account.error" class="text-red-500">* {{ account.error }}</div>
       <div class="grow" />
-      <misc-b-frame :px="20" :py="15" isPx>
-        <b-button @click="loginAccount" text="Войти" type="Primary" size="FULL" :class="isCorrect ? '' : 'disabled'"
-          class="text-2xl font-bold" />
+      <misc-b-frame :px="20" :py="15" is-px>
+        <b-button text="Войти" type="Primary" size="FULL" :class="isCorrect ? '' : 'disabled'"
+          class="text-2xl font-bold" @click="loginAccount" />
       </misc-b-frame>
       <div class="login-link">
         <p class="text-white text-opacity-50 select-none">Еще нет аккаунта?
@@ -27,6 +27,8 @@
 
 <script setup>
 import { watchThrottled } from '@vueuse/core';
+import { getSvgUrl } from '../../composables/imageURL';
+
 const global = useGlobalStore()
 const auth = useAuthStore()
 

@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useCurrencyStore } from '../../../store/exchanger.store';
+// import { useCurrencyStore } from '../../../store/exchanger.store';
 
 const currs = [
   {
@@ -26,7 +26,7 @@ const currs = [
   },
 ]
 
-const store = useCurrencyStore()
+// const store = useCurrencyStore()
 
 const settingsTabs = [
   {
@@ -66,14 +66,13 @@ onMounted(() => {
     <div class="settings-panel">
       <div class="settings-tabs">
         <b-button v-for="tab, i in settingsTabs" :key="i" type="Tab" :class="tab.id === currentTab ? 'active' : ''"
-          @click="currentTab = tab.id" :text="tab.name" />
+          :text="tab.name" @click="currentTab = tab.id" />
       </div>
 
-      <div class="settings-content accounts" v-if="currentTab === 'accounts'">
+      <div v-if="currentTab === 'accounts'" class="settings-content accounts">
         <exchange-list-wrapper class="settings-payments">
           <exchange-list-payments>
-            <div class="exchange-body-currency-items" id="2">
-            </div>
+            <div id="2" class="exchange-body-currency-items" />
           </exchange-list-payments>
         </exchange-list-wrapper>
         <div class="settings-accounts drop-shadow-base">
@@ -82,24 +81,24 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="settings-content general" v-else-if="currentTab === 'general'">
+      <div v-else-if="currentTab === 'general'" class="settings-content general">
         <div class="settings-person-data">
           <form @submit.prevent="SubmitForm()">
             <label for="name">
               <span class="typography-m-thin">Как к вам обращаться</span>
-              <misc-b-input name="name" input-type="primary" placeholder="Имя" v-model="Userdata.Name" />
+              <misc-b-input v-model="Userdata.Name" name="name" input-type="primary" placeholder="Имя" />
             </label>
             <label for="name">
               <span class="typography-m-thin">Телефон (не обязательно)</span>
-              <misc-b-input name="phone" input-type="primary" placeholder="Имя" v-model="Userdata.Phone" />
+              <misc-b-input v-model="Userdata.Phone" name="phone" input-type="primary" placeholder="Имя" />
             </label>
             <label for="name">
               <span class="typography-m-thin">Telegram ID (не обязательно)</span>
-              <misc-b-input name="telegram" input-type="primary" placeholder="Имя" v-model="Userdata.Telegram" />
+              <misc-b-input v-model="Userdata.Telegram" name="telegram" input-type="primary" placeholder="Имя" />
             </label>
             <label for="name">
               <span class="typography-m-thin">E-mail (не обязательно)</span>
-              <misc-b-input name="email" input-type="primary" placeholder="Имя" v-model="Userdata.Email" />
+              <misc-b-input v-model="Userdata.Email" name="email" input-type="primary" placeholder="Имя" />
             </label>
             <misc-b-frame py="1" px="1.075">
               <b-button type="Primary" text="Сохранить данные" size="FULL" @click="SubmitForm()" />
@@ -111,15 +110,15 @@ onMounted(() => {
           <form @submit.prevent="SubmitForm()">
             <label for="name">
               <span class="typography-m-thin">Действующий пароль</span>
-              <misc-b-input name="email" input-type="primary" placeholder="Имя" v-model="Userdata.CurrentPassword" />
+              <misc-b-input v-model="Userdata.CurrentPassword" name="email" input-type="primary" placeholder="Имя" />
             </label>
             <label for="name">
               <span class="typography-m-thin">Новый пароль</span>
-              <misc-b-input name="email" input-type="primary" placeholder="Имя" v-model="Userdata.Password" />
+              <misc-b-input v-model="Userdata.Password" name="email" input-type="primary" placeholder="Имя" />
             </label>
             <label for="name">
               <span class="typography-m-thin">Повторите новый пароль</span>
-              <misc-b-input name="email" input-type="primary" placeholder="Имя" v-model="Userdata.ConfirmPassword" />
+              <misc-b-input v-model="Userdata.ConfirmPassword" name="email" input-type="primary" placeholder="Имя" />
             </label>
             <misc-b-frame py="1" px="1.075">
               <b-button type="Primary" text="Сохранить данные" size="FULL" @click="SubmitForm()" />
@@ -128,7 +127,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="settings-content loading" v-else>
+      <div v-else class="settings-content loading">
         <misc-spinner />
       </div>
 

@@ -1,6 +1,6 @@
 <script setup>
-const props = defineProps({
-  
+defineProps({
+
 })
 </script>
 <template>
@@ -20,22 +20,25 @@ const props = defineProps({
 <style lang="scss">
 .payment-card {
   aspect-ratio: 280/170;
-  @include toRem(width,280);
+  @include toRem(width, 280);
   background-color: $col-tab-secondary;
   @include toRem2Values(padding, 20, 10);
   @include toRem(border-radius, 15);
   display: flex;
   flex-direction: column;
   @include toRem(gap, 70);
-  box-shadow: rgba($col-tab-secondary, .5) 0 -10px 22.5px 0, 
-  rgba(#000000, .25) 0 4px 4px 0;
+  box-shadow: rgba($col-tab-secondary, .5) 0 -10px 22.5px 0,
+    rgba(#000000, .25) 0 4px 4px 0;
   justify-content: space-between;
 }
-.payment-card-number, .payment-owner{
+
+.payment-card-number,
+.payment-owner {
   @include toRem(font-size, 12);
   color: $col-semitrans-white;
 }
-.payment-owner{
+
+.payment-owner {
   display: inline-flex;
   position: relative;
   @include toRem(height, 34);
@@ -45,25 +48,30 @@ const props = defineProps({
   align-items: end;
 }
 
-.payment-header, .payment-footer{
+.payment-header,
+.payment-footer {
   display: flex;
   justify-content: space-between;
 }
+
 .payment-header {
-  overflow-x: scroll; 
+  overflow-x: scroll;
 }
-.payment-bank{
+
+.payment-bank {
   @include toRem(border-radius, 15);
   @include toRem(width, 55);
 }
+
 @media screen and (max-width: 1025px) {
-  .payment-card{
+  .payment-card {
     width: 100%;
     flex-basis: calc(50% - 20px);
   }
 }
+
 @media screen and (max-width: 768px) {
-  .payment-card{
+  .payment-card {
     width: 100%;
     flex-basis: 100%;
   }

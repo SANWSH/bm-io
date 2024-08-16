@@ -1,7 +1,7 @@
 <template>
   <div :class="`container-AGBDLCID`">
-    <div class="item" v-for="(el, index) in rules" :key="index">
-        <div>{{ el.text }}</div>
+    <div v-for="(el, index) in rules" :key="index" class="item">
+      <div>{{ el.text }}</div>
     </div>
   </div>
 </template>
@@ -12,26 +12,26 @@ import { rules } from './DrawsArray';
 
 <style scoped lang="scss">
 .container-AGBDLCID {
-display: flex;
-gap: 10px;
-margin-bottom: 40px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 40px;
 }
 
 .item {
-padding: 20px 20px 20px 20px;
-border-radius: 15px;
-background: linear-gradient(91deg, #3D4047 5.56%, #2E3136 104.85%)!important;
-flex: 1;
+  padding: 20px 20px 20px 20px;
+  border-radius: 15px;
+  background: linear-gradient(91deg, #3D4047 5.56%, #2E3136 104.85%) !important;
+  flex: 1;
 }
 
 @media (max-width: 768px) {
-.container-AGBDLCID {
-margin-bottom: 60px;
-flex-direction: column;
-}
+  .container-AGBDLCID {
+    margin-bottom: 60px;
+    flex-direction: column;
+  }
 
-.item {
-height: 172px;
-}
+  .item {
+    height: 172px;
+  }
 }
 </style>

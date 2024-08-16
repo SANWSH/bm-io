@@ -3,7 +3,7 @@
     <label :for="`checkbox`">
       <div :class="`input-custom relative flex ${isChecked ? 'active' : ''} cursor-pointer`"
         @click.prevent="setActive()">
-        <input type="checkbox" :id="`checkbox`" ref="test" class="opacity-20 cursor-pointer" :checked="isChecked">
+        <input :id="`checkbox`" ref="test" type="checkbox" class="opacity-20 cursor-pointer" :checked="isChecked">
       </div>
       <span>{{ label }}
         <NuxtLink v-if="link" :to="link">

@@ -1,17 +1,12 @@
 <template>
   <div class="dropdown">
-    <button @click="toggleDropdown" class="dropdown-button" :class="isOpen? 'open': ''">
+    <button class="dropdown-button" :class="isOpen ? 'open' : ''" @click="toggleDropdown">
       <input type="text" disabled :value="selectedOption" placeholder="Выберите банк">
       <img :src="getSvgUrl('arrowDropdown')" alt="" width="32" class="brightness-[5] opacity-60">
     </button>
     <transition name="dropdown">
       <div v-if="isOpen" class="dropdown-content">
-        <button
-          v-for="option in options"
-          :key="option"
-          @click="selectOption(option)"
-          class="dropdown-option"
-        >
+        <button v-for="option in options" :key="option" class="dropdown-option" @click="selectOption(option)">
           {{ option }}
         </button>
       </div>
@@ -33,7 +28,9 @@ defineProps({
 
 const isOpen = ref(false);
 const selectedOption = ref('');
-const options = ['Option 1', 'Option 2', 'Option 3'];
+
+//const options = ['Option 1', 'Option 2', 'Option 3'];
+options = ['Option 1', 'Option 2', 'Option 3'];
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
@@ -46,7 +43,8 @@ const selectOption = (option) => {
 </script>
 
 <style scoped lang="scss">
-.dropdown, .dropdown>button {
+.dropdown,
+.dropdown>button {
   position: relative;
   width: 100%;
 }
@@ -61,12 +59,14 @@ const selectOption = (option) => {
   cursor: pointer;
   @include toRem2Values(padding, 23, 20);
   @include toRem(border-radius, 15);
-  &>input{
+
+  &>input {
     background: transparent;
     pointer-events: none;
   }
 }
-.dropdown-button.open{
+
+.dropdown-button.open {
   border-end-start-radius: 0px;
   border-end-end-radius: 0px;
 }
@@ -99,5 +99,4 @@ const selectOption = (option) => {
 .dropdown .dropdown-content {
   display: block;
 }
-
 </style>

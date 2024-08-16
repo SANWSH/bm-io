@@ -3,27 +3,19 @@
     <div class="titleBlock">
       <div class="flexTitle">
         <span class="title">Наши победители</span>
-        <img :src="getSvgUrl('arrowToTopRight')" class="titleIcon" alt="icon1" />
+        <img :src="getSvgUrl('arrowToTopRight')" class="titleIcon" alt="icon1">
       </div>
     </div>
-      <swiper
-      wrapper-class="scrollBlock"
-      :modules="[SwiperAutoplay]"
-      :slides-per-view="1.8"
-      :grab-cursor="true"
-      :space-between="25"
-      :allow-slide-prev="true"
-      :loop="true"
-      :centeredSlides="true"
-      :autoplay="{
-          delay:4000,
-          disableOnInteraction: false
+    <swiper wrapper-class="scrollBlock" :modules="[SwiperAutoplay]" :slides-per-view="1.8" :grab-cursor="true"
+      :space-between="25" :allow-slide-prev="true" :loop="true" :centered-slides="true" :autoplay="{
+        delay: 4000,
+        disableOnInteraction: false
       }">
       <swiper-slide v-for="(el, index) in winners" :key="index">
-        <div  class="winnerBlock">
+        <div class="winnerBlock">
           <div class="upperBlock">
             <div class="numberBlock">
-              <img :src="getSvgUrl('likeIcon')" class="heartIcon" alt="heart" />
+              <img :src="getSvgUrl('likeIcon')" class="heartIcon" alt="heart">
               <span>Розыгрыш №{{ el.number }}</span>
             </div>
             <span>{{ el.date }}</span>
@@ -32,7 +24,7 @@
           <span class="email">{{ el.email }}</span>
         </div>
       </swiper-slide>
-  </swiper>
+    </swiper>
   </div>
 </template>
 
@@ -40,41 +32,41 @@
 import { getSvgUrl } from '~/composables/imageURL'
 const winners = [
   {
-        email: 'na***@gmail.com',
-        date: '20.04.2023',
-        number: '0025',
-        reward: 10000
-    },
-    {
-        email: 'na***@gmail.com',
-        date: '20.04.2023',
-        number: '0025',
-        reward: 10000
-    },
-    {
-        email: 'na***@gmail.com',
-        date: '20.04.2023',
-        number: '0025',
-        reward: 10000
-    },
-    {
-        email: 'na***@gmail.com',
-        date: '20.04.2023',
-        number: '0025',
-        reward: 10000
-    },
-    {
-        email: 'na***@gmail.com',
-        date: '20.04.2023',
-        number: '0025',
-        reward: 10000
-    },
-    {
-        email: 'na***@gmail.com',
-        date: '20.04.2023',
-        number: '0025',
-        reward: 10000
-    },
+    email: 'na***@gmail.com',
+    date: '20.04.2023',
+    number: '0025',
+    reward: 10000
+  },
+  {
+    email: 'na***@gmail.com',
+    date: '20.04.2023',
+    number: '0025',
+    reward: 10000
+  },
+  {
+    email: 'na***@gmail.com',
+    date: '20.04.2023',
+    number: '0025',
+    reward: 10000
+  },
+  {
+    email: 'na***@gmail.com',
+    date: '20.04.2023',
+    number: '0025',
+    reward: 10000
+  },
+  {
+    email: 'na***@gmail.com',
+    date: '20.04.2023',
+    number: '0025',
+    reward: 10000
+  },
+  {
+    email: 'na***@gmail.com',
+    date: '20.04.2023',
+    number: '0025',
+    reward: 10000
+  },
 ]
 
 const formattedRew = (reward) => reward.toLocaleString()
@@ -84,7 +76,8 @@ const formattedRew = (reward) => reward.toLocaleString()
 .container-23456 {
   @apply flex relative w-full gap-3
 }
-.swiper{
+
+.swiper {
   @apply border border-white border-opacity-10 rounded-2xl p-2
 }
 
@@ -179,5 +172,4 @@ const formattedRew = (reward) => reward.toLocaleString()
     font-size: 22px;
   }
 }
-
 </style>

@@ -2,38 +2,23 @@
   <Modal>
 
     <div class="container !fixed w-full">
-      <img
-        :src="getSvgUrl('close')"
-        alt="icon"
-        class="close"
-        @click="$emit('close')"
-      />
+      <img :src="getSvgUrl('close')" alt="icon" class="close" @click="$emit('close')">
       <span class="title">Подтверждение обмена</span>
       <span class="description">
         Для завершения обмена, подтвердите введенные данные
       </span>
       <div class="center">
-        <div class="divider"></div>
+        <div class="divider" />
       </div>
       <div class="changeBlock">
         <div class="upperBlock">
-           <exchange-list-block
-            type="Secondary"
-            title="Отдаете"
-            :selectedItem="store.selectedGiveItem.id ? store.selectedGiveItem.name + ' ' + store.selectedGiveItem.code : ''"
-            :course="store.exchanger.to + ' ' + store.selectedGiveItem.code"
-            :reverse="false"/>
-          <img
-            :src="getSvgUrl('changeIcon')"
-            alt="icon"
-            class="changeIcon"
-          />
-          <exchange-list-block
-            type="Secondary"
-            title="Получаете"
-            :selectedItem="store.selectedGetItem.id ? store.selectedGetItem.name + ' ' + store.selectedGetItem.code : ''"
-            :course="store.exchanger.get + ' ' + store.selectedGetItem.code"
-            :reverse="true"/>
+          <exchange-list-block type="Secondary" title="Отдаете"
+            :selected-item="store.selectedGiveItem.id ? store.selectedGiveItem.name + ' ' + store.selectedGiveItem.code : ''"
+            :course="store.exchanger.to + ' ' + store.selectedGiveItem.code" :reverse="false" />
+          <img :src="getSvgUrl('changeIcon')" alt="icon" class="changeIcon">
+          <exchange-list-block type="Secondary" title="Получаете"
+            :selected-item="store.selectedGetItem.id ? store.selectedGetItem.name + ' ' + store.selectedGetItem.code : ''"
+            :course="store.exchanger.get + ' ' + store.selectedGetItem.code" :reverse="true" />
         </div>
         <div class="courseBlock">
           <div class="textBlock courseFlex">
@@ -50,29 +35,41 @@
           <exchange-list-block type="Secondary" :rub="rub" />
         </div>
         <div class="buttonsBlock">
-            <misc-b-frame px="20" py="15" isPx>
-              <NuxtLink to="/payment">
-                <BButton size="FULL" type="Primary" text="Подтвердить"></BButton>
-              </NuxtLink>
-            </misc-b-frame>
-          <BButton 
-          size="L" 
-          type="Tertiary" 
-          class="cancelButton" 
-          text="Отменить" 
-          @click="$emit('close')">
+          <misc-b-frame px="20" py="15" is-px>
+            <NuxtLink to="/payment">
+              <BButton size="FULL" type="Primary" text="Подтвердить" />
+            </NuxtLink>
+          </misc-b-frame>
+          <BButton size="L" type="Tertiary" class="cancelButton" text="Отменить" @click="$emit('close')">
             Отменить
           </BButton>
         </div>
       </div>
-      </div>
+    </div>
 
   </Modal>
-  </template>
+</template>
+
+<script setup>
+
+const store = useCurrencyStore()
+defineProps({
+  btc: String,
+  rub: String,
+  location: String,
+  isOpen: Boolean,
+})
+defineEmits([
+  'close',
+])
+
+</script>
+
 <style>
- #teleports {
- }
+/* #teleports {
+ } */
 </style>
+
 <style scoped>
 .container {
   @apply p-4 pt-10 pr-4 pb-4 rounded-xl z-[1000] -translate-x-1/2 left-1/2 top-1/2 -translate-y-1/2;
@@ -104,7 +101,7 @@
 }
 
 .divider {
-  @apply h-1 w-[606px] bg-[rgba(255,255,255,0.1)] mb-10;
+  @apply h-1 w-[606px] bg-white opacity-10 mb-10;
 }
 
 .changeBlock {
@@ -120,7 +117,7 @@
 }
 
 .greyText {
-  @apply text-[rgba(255,255,255,0.5)];
+  @apply text-gray-400;
 }
 
 .boldText {
@@ -157,18 +154,3 @@
   @apply opacity-50;
 }
 </style>
-
-<script setup>
-
-const store = useCurrencyStore()
-const props = defineProps({
-  btc: String,
-  rub: String,
-  location: String,
-  isOpen: Boolean,
-})
-defineEmits([
-  'close',
-])
-
-</script>

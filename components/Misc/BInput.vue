@@ -1,12 +1,12 @@
 <template>
   <div :class="`b-input group exchange-${inputType}`">
     <div :class="`exchange-body-wrapper`" @click="setFocus()">
-      <img :src="getSvgUrl(prependIcon)" alt="" v-if="prependIcon"
+      <img v-if="prependIcon" :src="getSvgUrl(prependIcon)" alt=""
         :class="`exchange-body-${inputType}-icon select-none`">
       <input :id="inputType" :class="`exchange-body-input w-full`" :placeholder="placeholder"
-        :type="inputType === 'primaryA' ? 'number' : 'text'" :disabled="isDisabled" :value="modelValue || inputValue"
+        :type="inputType === 'primary' ? 'number' : 'text'" :disabled="isDisabled" :value="modelValue || inputValue"
         :name="name" @input="$emit('update:modelValue', $event.target.value)">
-      <div class="exchange-body-icon-wrapper" v-if="appendIcon">
+      <div v-if="appendIcon" class="exchange-body-icon-wrapper">
         <span v-if="prefix" class="prefix">{{ prefix }}</span>
         <img :src="getSvgUrl(appendIcon)" alt=""
           :class="`exchange-body-${inputType}-icon select-none ${!isDisabled || isIconGrayscale ? 'active gray' : 'active'}`">
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
+import { getSvgUrl } from "../../composables/imageURL";
 
 interface IInputProps {
   inputType: 'search' | 'primary'
@@ -35,7 +36,7 @@ interface IInputProps {
   isIconGrayscale?: boolean
 }
 
-const props = defineProps<IInputProps>()
+defineProps<IInputProps>()
 defineEmits<{
   'update:modelValue': [value: number | string]
 }>()

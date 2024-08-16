@@ -7,35 +7,54 @@
           <div :class="$style.popularFlexBlock">
             <div :class="$style.flexBlock">
               <div :class="$style.redIcon">
-                <img :src="btcIcon" alt="icon" />
+                <img :src="btcIcon" alt="icon">
               </div>
               <span>{{ el.title1 }}</span>
             </div>
             <div :class="$style.dividerBlock">
-              <div :class="[$style.divider, $style.dividerWidth]"></div>
-              <img :src="changeIcon" alt="change" />
-              <div :class="[$style.divider, $style.dividerWidth]"></div>
+              <div :class="[$style.divider, $style.dividerWidth]" />
+              <img :src="changeIcon" alt="change">
+              <div :class="[$style.divider, $style.dividerWidth]" />
             </div>
             <div :class="$style.flexBlock">
               <div :class="$style.greyIcon">
-                <img :src="btcDark" alt="icon" />
+                <img :src="btcDark" alt="icon">
               </div>
               <span>{{ el.title2 }}</span>
             </div>
           </div>
           <div :class="$style.linkBlock">
             <div :class="$style.link">
-              <img :src="link" alt="link" :class="$style.linkIcon" />
+              <img :src="link" alt="link" :class="$style.linkIcon">
             </div>
           </div>
         </div>
       </div>
       <div :class="[$style.closeBlock, isVisible ? $style.padding : '']" @click="isVisible = !isVisible">
-        <img :src="isVisible ? toClose : toOpen" alt="close" />
+        <img :src="isVisible ? toClose : toOpen" alt="close">
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import btcIcon from '../assets/btcIcon.svg'
+import btcDark from '../assets/btcIconDark.svg'
+import changeIcon from '../assets/changeIcon (2).svg'
+import link from '../assets/link.svg'
+import toOpen from '../assets/toOpen.svg'
+import toClose from '../assets/toClose.svg'
+
+const popular = ref([
+  // your popular data here
+  { title1: 'Bitcoin BTC', title2: 'Bitcoin BTC' },
+  { title1: 'Ethereum ETH', title2: 'Ethereum ETH' },
+  // ...
+])
+
+const isVisible = ref(false)
+</script>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -113,8 +132,8 @@
 }
 
 .lastChangesDivider {
-background-color: rgba(255, 255, 255, 0.10);
-height: 1px;
+  background-color: rgba(255, 255, 255, 0.10);
+  height: 1px;
 }
 
 .reservGreyBlock {
@@ -143,7 +162,7 @@ height: 1px;
 }
 
 .linkIcon {
-cursor: pointer;
+  cursor: pointer;
 }
 
 .popularFlexBlock {
@@ -244,28 +263,8 @@ cursor: pointer;
 }
 
 @media (max-width: 1480px) {
-.wrapper {
-  height: 252px;
+  .wrapper {
+    height: 252px;
+  }
 }
-}
-
 </style>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import btcIcon from '../assets/btcIcon.svg'
-import btcDark from '../assets/btcIconDark.svg'
-import changeIcon from '../assets/changeIcon (2).svg'
-import link from '../assets/link.svg'
-import toOpen from '../assets/toOpen.svg'
-import toClose from '../assets/toClose.svg'
-
-const popular = ref([
-  // your popular data here
-  { title1: 'Bitcoin BTC', title2: 'Bitcoin BTC' },
-  { title1: 'Ethereum ETH', title2: 'Ethereum ETH' },
-  // ...
-])
-
-const isVisible = ref(false)
-</script>

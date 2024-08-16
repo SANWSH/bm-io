@@ -12,7 +12,7 @@ function onOutsideClick(e) {
 
 </script>
 <template>
-  <div id="modal" class="overlay" ref="target" @mousedown="onOutsideClick($event.target.id)">
+  <div id="modal" ref="target" class="overlay" @mousedown="onOutsideClick($event.target.id)">
     <slot />
   </div>
 </template>

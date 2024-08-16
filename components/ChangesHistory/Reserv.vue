@@ -5,7 +5,7 @@
       <div :class="[!isVisible ? 'listBlock noActiveList' : 'listBlock']">
         <div v-for="(el, index) in reservItems" :key="index" class="reservGreyBlock">
           <div class="redIcon">
-            <img :src="btc" alt="icon" class="icon" />
+            <img :src="btc" alt="icon" class="icon">
           </div>
           <div class="btcBlock">
             <span>Bitcoin BTC</span>
@@ -14,11 +14,27 @@
         </div>
       </div>
       <div :class="[isVisible ? 'closeBlock padding' : 'closeBlock']" @click="isVisible = !isVisible">
-        <img :src="isVisible ? toClose : toOpen" alt="close" />
+        <img :src="isVisible ? toClose : toOpen" alt="close">
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import btc from './assets/btcIcon.svg'
+import toOpen from '../assets/toOpen.svg'
+import toClose from '../assets/toClose.svg'
+
+const reservItems = ref([
+  // your reserv items data here
+  { btc: '0.0001' },
+  { btc: '0.0002' },
+  // ...
+])
+
+const isVisible = ref(false)
+</script>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -96,8 +112,8 @@
 }
 
 .lastChangesDivider {
-background-color: rgba(255, 255, 255, 0.10);
-height: 1px;
+  background-color: rgba(255, 255, 255, 0.10);
+  height: 1px;
 }
 
 .reservGreyBlock {
@@ -126,7 +142,7 @@ height: 1px;
 }
 
 .linkIcon {
-cursor: pointer;
+  cursor: pointer;
 }
 
 .popularFlexBlock {
@@ -227,25 +243,8 @@ cursor: pointer;
 }
 
 @media (max-width: 1480px) {
-.wrapper {
-  height: 252px;
+  .wrapper {
+    height: 252px;
+  }
 }
-}
-
 </style>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import btc from '../assets/btcIcon.svg'
-import toOpen from '../assets/toOpen.svg'
-import toClose from '../assets/toClose.svg'
-
-const reservItems = ref([
-  // your reserv items data here
-  { btc: '0.0001' },
-  { btc: '0.0002' },
-  // ...
-])
-
-const isVisible = ref(false)
-</script>

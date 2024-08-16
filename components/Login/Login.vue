@@ -1,17 +1,17 @@
 <template>
   <div class="login">
     <transition name="sideIn">
-      <login-signin v-if="type === 'SignIn'" @onLogInClick="$emit('onLogInClick', $event)" />
+      <login-signin v-if="type === 'SignIn'" @on-log-in-click="$emit('onLogInClick', $event)" />
     </transition>
     <transition name="sideIn">
-      <login-signup v-if="type === 'SignUp'" @onLogInClick="$emit('onLogInClick', $event)" />
+      <login-signup v-if="type === 'SignUp'" @on-log-in-click="$emit('onLogInClick', $event)" />
     </transition>
   </div>
 </template>
 
 <script setup>
-import Signin from './Signin.vue';
-import Signup from './Signup.vue';
+// import Signin from './Signin.vue';
+// import Signup from './Signup.vue';
 
 const props = defineProps({
   type: "SignIn" | "SignUp"

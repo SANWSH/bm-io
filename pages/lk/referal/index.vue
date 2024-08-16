@@ -15,14 +15,14 @@ const tabs = [
   { title: 'Заработанные средства', id: 'cashback' },
 ]
 
-const chartData = reactive([
-  {
-    data: [200, 300, 400, 700, 500, 600, 300, 450, 700, 100],
-  },
-  {
-    data: [5, 7, 10, 18, 12, 14],
-  },
-])
+// const chartData = reactive([
+//   {
+//     data: [200, 300, 400, 700, 500, 600, 300, 450, 700, 100],
+//   },
+//   {
+//     data: [5, 7, 10, 18, 12, 14],
+//   },
+// ])
 const currentTab = ref('operations')
 
 watch(
@@ -112,7 +112,7 @@ const chartOptions = reactive({
 
 function getDate() {
   const year = 2024;
-  const mths = [];
+  // const mths = [];
   for (let i = 0; i < 12; i++) {
     const date = new Date(year, i, 1);
     months.value.push(date.toLocaleString('default', { month: 'short' }));
@@ -121,9 +121,9 @@ function getDate() {
   console.log(months);
 }
 
-function formatDate(date) {
-  return date.splice(3)
-}
+// function formatDate(date) {
+//   return date.splice(3)
+// }
 
 const scores = [
   { data: 3423, type: 'rub', title: 'Всего заработано', id: 0 },
@@ -154,16 +154,16 @@ onMounted(() => {
           </article>
           <div class="referal-link-wrapper">
             <span class="font-semibold text-base">Ваша ссылка для приглашения знакомых:</span>
-            <misc-b-input @click="copyContentToBuffer($event)" inputType="primary"
-              :inputValue="'https://test.bitmafia.io/?ref=l5'" appendIcon="copyIcon" :isActive="false" />
+            <misc-b-input :input-value="'https://test.bitmafia.io/?ref=l5'" input-type="primary" append-icon="copyIcon"
+              :is-active="false" @click="copyContentToBuffer($event)" />
             <span class="font-semibold text-base">Изменить реферальное имя</span>
-            <misc-b-input inputType="primary" :inputValue="'https://test.bitmafia.io/?ref=l5'"
-              infoValue="Это поле дает возможность выбирать красивое реферальное имя. После сохранения настроек старый хэш будет утерян."
-              infoClass="text-normal text-white text-opacity-50 " appendIcon="editIcon" :isActive="true" />
+            <misc-b-input input-type="primary" :input-value="'https://test.bitmafia.io/?ref=l5'"
+              info-value="Это поле дает возможность выбирать красивое реферальное имя. После сохранения настроек старый хэш будет утерян."
+              info-class="text-normal text-white text-opacity-50 " append-icon="editIcon" :is-active="true" />
           </div>
         </div>
         <div class="referal-score">
-          <div class="score-wrapper" v-for="score in scores" :key="score.id">
+          <div v-for="score in scores" :key="score.id" class="score-wrapper">
             <h3 class="text-xs text-white text-opacity-50">{{ score.title }}</h3>
             <h1 class="text-4xl text-white font-semibold">{{ score.data }} {{ !!score.type ? score.type.toUpperCase() :
               '' }}</h1>
@@ -173,27 +173,26 @@ onMounted(() => {
       <div class="referal-info-wrapper">
         <div class="referal-info-tabs">
           <b-button v-for="tab in tabs" :key="tab.id" type="Tab" size="X" :text="tab.title"
-            :class="currentTab === tab.id ? 'active' : ''" @click="currentTab = tab.id"></b-button>
+            :class="currentTab === tab.id ? 'active' : ''" @click="currentTab = tab.id" />
         </div>
         <highchart v-if="currentTab !== 'operations' && currentTab !== 'cashback'" :options="chartOptions"
-          :redrawOnUpdate="true"></highchart>
-        <application-list :items="applications" v-if="currentTab === 'operations'" />
-        <div class="cashback" v-if="currentTab === 'cashback'">
-          <div class="cashback-item" v-for="item in 10" :key="item">
+          :redraw-on-update="true" />
+        <application-list v-if="currentTab === 'operations'" :items="applications" />
+        <div v-if="currentTab === 'cashback'" class="cashback">
+          <div v-for="item in 10" :key="item" class="cashback-item">
             <div class="cashback-header">
-              <span class="typography-m-thin" v-for="header in tableHeaders" :key="header">
+              <span v-for="header in tableHeaders" :key="header" class="typography-m-thin">
                 {{ header }}
               </span>
             </div>
             <div class="cashback-body">
-              <span class="typography-m" v-for="content in tableContent" :key="content">
+              <span v-for="content in tableContent" :key="content" class="typography-m">
                 {{ content }}
               </span>
             </div>
-            <span></span>
+            <span />
           </div>
-          <div class="cashback-item" v-for="item in 10" :key="item">
-          </div>
+          <div v-for="item in 10" :key="item" class="cashback-item" />
         </div>
       </div>
     </div>

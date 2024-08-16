@@ -8,11 +8,11 @@
           <div :class="$style.flexBlock">
             <div :class="$style.iconsBlock">
               <div :class="$style.redIcon">
-                <img :src="btcIcon" alt="icon" />
+                <img :src="btcIcon" alt="icon">
               </div>
-              <img :src="vector" :class="$style.vector" alt="vector" />
+              <img :src="vector" :class="$style.vector" alt="vector">
               <div :class="$style.greyIcon">
-                <img :src="btcDark" alt="icon" />
+                <img :src="btcDark" alt="icon">
               </div>
             </div>
             <div :class="$style.infoBlock">
@@ -20,7 +20,7 @@
                 <span>Bitcoin BTC</span>
                 <span :class="$style.bold">{{ el.btc }}&nbsp;BTC</span>
               </div>
-              <div :class="$style.divider"></div>
+              <div :class="$style.divider" />
               <div :class="$style.btcBlock">
                 <span>Bitcoin BTC</span>
                 <span :class="$style.bold">{{ el.rub }}&nbsp;RUB</span>
@@ -30,11 +30,29 @@
         </div>
       </div>
       <div :class="[$style.closeBlock, isVisible ? $style.padding : '']" @click="isVisible = !isVisible">
-        <img :src="isVisible ? toClose : toOpen" alt="close" />
+        <img :src="isVisible ? toClose : toOpen" alt="close">
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import btcIcon from '../assets/btcIcon.svg'
+import btcDark from '../assets/btcIconDark.svg'
+import vector from '../assets/vectorVertical.svg'
+import toClose from '../assets/toClose.svg'
+import toOpen from '../assets/toOpen.svg'
+
+const lastChanges = ref([
+  // your last changes data here
+  { time: '10:00', btc: '0.0001', rub: '100' },
+  { time: '10:01', btc: '0.0002', rub: '200' },
+  // ...
+])
+
+const isVisible = ref(false)
+</script>
 
 <style lang="scss" scoped>
 .wrapper {
@@ -112,8 +130,8 @@
 }
 
 .lastChangesDivider {
-background-color: rgba(255, 255, 255, 0.10);
-height: 1px;
+  background-color: rgba(255, 255, 255, 0.10);
+  height: 1px;
 }
 
 .reservGreyBlock {
@@ -142,7 +160,7 @@ height: 1px;
 }
 
 .linkIcon {
-cursor: pointer;
+  cursor: pointer;
 }
 
 .popularFlexBlock {
@@ -243,27 +261,8 @@ cursor: pointer;
 }
 
 @media (max-width: 1480px) {
-.wrapper {
-  height: 252px;
+  .wrapper {
+    height: 252px;
+  }
 }
-}
-
 </style>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import btcIcon from '../assets/btcIcon.svg'
-import btcDark from '../assets/btcIconDark.svg'
-import vector from '../assets/vectorVertical.svg'
-import toClose from '../assets/toClose.svg'
-import toOpen from '../assets/toOpen.svg'
-
-const lastChanges = ref([
-  // your last changes data here
-  { time: '10:00', btc: '0.0001', rub: '100' },
-  { time: '10:01', btc: '0.0002', rub: '200' },
-  // ...
-])
-
-const isVisible = ref(false)
-</script>

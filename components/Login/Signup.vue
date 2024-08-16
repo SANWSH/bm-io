@@ -4,21 +4,20 @@
       <b class="text-white text-opacity-50 select-none">Добро пожаловать! Создайте аккаунт</b>
       <img :src="getSvgUrl('close')" alt="" @click="global.closeModal()">
     </div>
-    <form @submit.prevent class="login-send-form">
-      <Misc-BInput name="name" v-model="account.input.name" inputType="primary"
+    <form class="login-send-form" @submit.prevent>
+      <Misc-BInput v-model="account.input.name" name="name" input-type="primary"
         placeholder="Пожалуйста, представьтесь" />
-      <Misc-BInput name="email" v-model="account.input.email" inputType="primary" placeholder="Введите e-mail" />
-      <Misc-BInput name="password" v-model="account.input.password" inputType="primary"
+      <Misc-BInput v-model="account.input.email" name="email" input-type="primary" placeholder="Введите e-mail" />
+      <Misc-BInput v-model="account.input.password" name="password" input-type="primary"
         placeholder="Придумайте пароль" />
-      <Misc-BInput name="confirmPassword" v-model="account.input.confirmPassword" inputType="primary"
+      <Misc-BInput v-model="account.input.confirmPassword" name="confirmPassword" input-type="primary"
         placeholder="Повторите пароль" />
       <div v-if="account.error" class="text-red-500">* {{ account.error }}</div>
       <checkbox v-model="isChecked" label="Я согласен с " link-label="условиями и правилами сервиса" link="/"
-        class="my-5">
-      </checkbox>
-      <misc-b-frame :px="20" :py="15" isPx>
-        <b-button @click="createAccount" text="Зарегистрироваться" type="Primary" size="FULL"
-          :class="!isChecked || !isCorrect ? 'disabled' : ''" class="text-2xl font-bold" />
+        class="my-5" />
+      <misc-b-frame :px="20" :py="15" is-px>
+        <b-button text="Зарегистрироваться" type="Primary" size="FULL"
+          :class="!isChecked || !isCorrect ? 'disabled' : ''" class="text-2xl font-bold" @click="createAccount" />
       </misc-b-frame>
     </form>
     <div class="login-link">

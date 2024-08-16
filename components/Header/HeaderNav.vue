@@ -1,9 +1,9 @@
 <template>
   <ul class="navigation">
-    <li class="navText" v-for="navItem in items" :key="navItem.id">
-        <NuxtLink :to="navItem.to" class="selectableText"> 
-            {{ navItem.title }}
-        </NuxtLink>
+    <li v-for="navItem in items" :key="navItem.id" class="navText">
+      <NuxtLink :to="navItem.to" class="selectableText">
+        {{ navItem.title }}
+      </NuxtLink>
     </li>
   </ul>
 </template>
@@ -16,7 +16,7 @@ defineProps<INavMenuProps>()
 </script>
 
 <style>
-  .navText{
-    @apply text-white text-opacity-50 my-3
-  }
+.navText {
+  @apply text-white text-opacity-50 my-3
+}
 </style>

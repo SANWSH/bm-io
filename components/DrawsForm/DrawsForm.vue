@@ -3,23 +3,23 @@
     <div class="formContainer">
       <span class="title">Вы все сделали? Заполните форму для участия!</span>
       <div class="inputsBlock">
-        <misc-b-input placeholder="E-mail" v-model="email" inputType="primary" />
-        <misc-b-input placeholder="Номер Вашего обмена" v-model="number" inputType="primary" />
+        <misc-b-input v-model="email" placeholder="E-mail" input-type="primary" />
+        <misc-b-input v-model="number" placeholder="Номер Вашего обмена" input-type="primary" />
       </div>
       <div class="acceptBlock">
         <checkbox v-model="isChecked" label="Я согласен с " link-label="условиями проведения конкурса"
           link="/user-agreements/contest" />
       </div>
-      <misc-b-frame px="20" py="15" isPx>
+      <misc-b-frame px="20" py="15" is-px>
         <b-button size="FULL" type="Primary" class="button text-2xl font-bold" :class="!isChecked ? 'disabled' : ''"
-          text="Участвовать!"></b-button>
+          text="Участвовать!" />
       </misc-b-frame>
     </div>
   </div>
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { getImageUrl } from '../../composables/imageURL';
 
 const email = ref('')
 const number = ref('')

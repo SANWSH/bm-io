@@ -10,10 +10,10 @@
                 </div>
             </article>
         </exchange-list-wrapper>
-        <exchange-list-item :class="'change' + exchanger.id" class="shadow-md shadow-black"
-            v-for="exchanger in EXCHANGERS" :key="exchanger.id" :id="exchanger.id"
+        <exchange-list-item v-for="exchanger in EXCHANGERS" :id="exchanger.id"
+            :key="exchanger.id" :class="'change' + exchanger.id" class="shadow-md shadow-black"
             :title="exchanger.title ? exchanger.title : ''" :items="exchanger.titleItems"
-            @value:ChangePosition="store.swapSelectedItems()" />
+            @value:change-position="store.setSelectedItem()" />
         <exchange-list-wrapper class="total">
             <h1 class="title-2">
                 <span class="text-gray-500">Меняем</span>
@@ -21,19 +21,19 @@
                 <span class="text-gray-500">на</span>
                 {{ store.selectedGetItem.name }}
             </h1>
-            <div class="exchange-wrapper" v-if="store.currency && store.currencyOperations">
+            <div v-if="store.currency && store.currencyOperations" class="exchange-wrapper">
                 <div class="mb-4">
-                    <span class="text-gray-500" v-show="course">Обмен по курсу: {{ course }}</span>
-                    <div class="h-[1px] w-full bg-white bg-opacity-20 mt-2.5"></div>
+                    <span v-show="course" class="text-gray-500">Обмен по курсу: {{ course }}</span>
+                    <div class="h-[1px] w-full bg-white bg-opacity-20 mt-2.5"/>
                 </div>
                 <div class="exchange-blocks">
                     <exchange-list-block title="Отдаете"
-                        :selectedItem="store.selectedGiveItem.id ? store.selectedGiveItem.name + ' ' + store.selectedGetItem.code : ''"
+                        :selected-item="store.selectedGiveItem.id ? store.selectedGiveItem.name + ' ' + store.selectedGetItem.code : ''"
                         :course="store.exchanger.to.toLocaleString('ru-RU') + ' ' + store.selectedGiveItem.code"
                         :reverse="screen.width.value > 480 ? false : true" />
 
                     <exchange-list-block title="Получаете"
-                        :selectedItem="store.selectedGetItem.id ? store.selectedGetItem.name + ' ' + store.selectedGiveItem.code : ''"
+                        :selected-item="store.selectedGetItem.id ? store.selectedGetItem.name + ' ' + store.selectedGiveItem.code : ''"
                         :course="store.exchanger.get.toLocaleString('ru-RU') + ' ' + store.selectedGetItem.code"
                         :reverse="true" />
                 </div>
@@ -41,17 +41,17 @@
             <misc-spinner v-else />
             <div class="flex flex-col gap-1.5 justify-center">
                 <span class="text-white text-opacity-50">Описание обмена</span>
-                <misc-b-input name="paymentEmail" inputType="primary" append-icon="emailIconActive"
-                    placeholder="Введите Ваш e-mail" :isIconGrayscale="true" />
-                <misc-b-input name="paymentCard" inputType="primary" append-icon="Bitcoin_thumbnail"
-                    placeholder="Номер карты" :isIconGrayscale="true" />
-                <misc-b-input name="paymentBank" inputType="primary" append-icon="Bitcoin_thumbnail"
-                    placeholder="Номер счета" :isIconGrayscale="true" />
+                <misc-b-input name="paymentEmail" input-type="primary" append-icon="emailIconActive"
+                    placeholder="Введите Ваш e-mail" :is-icon-grayscale="true" />
+                <misc-b-input name="paymentCard" input-type="primary" append-icon="Bitcoin_thumbnail"
+                    placeholder="Номер карты" :is-icon-grayscale="true" />
+                <misc-b-input name="paymentBank" input-type="primary" append-icon="Bitcoin_thumbnail"
+                    placeholder="Номер счета" :is-icon-grayscale="true" />
             </div>
             <checkbox v-model="isChecked" label="Я согласен с " link-label="условиями и правилами сервиса" link="/" />
-            <misc-b-frame :px="20" :py="15" isPx>
-                <b-button @click="onClickOpenModal" text="Перейти к оплате" type="Primary" size="FULL"
-                    :class="isChecked ? '' : 'disabled'" class="typography-x" />
+            <misc-b-frame :px="20" :py="15" is-px>
+                <b-button text="Перейти к оплате" type="Primary" size="FULL" :class="isChecked ? '' : 'disabled'"
+                    class="typography-x" @click="onClickOpenModal" />
             </misc-b-frame>
             <confirm-modal v-show="false" />
         </exchange-list-wrapper>
@@ -66,8 +66,8 @@ import { EXCHANGERS } from './exchangers'
 import { useCurrencyStore } from '../../store/exchanger.store';
 import { useWindowSize } from '@vueuse/core'
 import { ref, provide, watch } from "vue"
-import { useForm } from 'vee-validate'
-import * as yup from 'yup'
+// import { useForm } from 'vee-validate'
+// import * as yup from 'yup'
 
 const store = useCurrencyStore()
 const isChecked = ref(false)
@@ -88,7 +88,7 @@ watch(
     (): any[] => [store.selectedGetItem, store.selectedGiveItem],
     (_, [newValueA, newValueB]): void => {
         if (newValueA.id !== -1 && newValueB.id !== -1) {
-            let courseValue = 1 * newValueA.course
+            const courseValue = 1 * newValueA.course
             if (store.selectedGiveItem.type !== 'COIN') {
                 course.value = courseValue.toFixed(store.selectedGetItem.decimals).toLocaleString() + ' ' + newValueA.code + ' = 1 ' + newValueB.code
             } else {
@@ -107,17 +107,17 @@ interface IExchangeListProps {
 defineProps<IExchangeListProps>()
 // validation
 
-const { handleSubmit } = useForm({
-    validationSchema: yup.object({
-        PaymentBank: yup.string().required(),
-        paymentCard: yup.string().required(),
-        paymentEmail: yup.string().required().email(),
-    }),
-});
+// const { handleSubmit } = useForm({
+//     validationSchema: yup.object({
+//         PaymentBank: yup.string().required(),
+//         paymentCard: yup.string().required(),
+//         paymentEmail: yup.string().required().email(),
+//     }),
+// });
 
-const onSubmit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2));
-});
+// const onSubmit = handleSubmit(values => {
+//     alert(JSON.stringify(values, null, 2));
+// });
 
 </script>
 

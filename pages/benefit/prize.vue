@@ -1,19 +1,15 @@
 <template>
   <div class="flex flex-col gap-5">
-    <benefits-list class="selected"/>
-    <DrawTimer :prize="10000" 
-    :days='timer.days' 
-    :hours='timer.hours' 
-    :mins='timer.minutes' 
-    :sec='timer.seconds'/>
-    <DrawCourse/>
-    <Winners/>
-    <DrawsForm/>
-    <DrawsRules/>
+    <benefits-list class="selected" />
+    <DrawTimer :prize="10000" :days='timer.days' :hours='timer.hours' :mins='timer.minutes' :sec='timer.seconds' />
+    <DrawCourse />
+    <Winners />
+    <DrawsForm />
+    <DrawsRules />
   </div>
 </template>
 <script setup>
-import { reactive, watch } from 'vue';
+import { reactive } from 'vue';
 
 const isChecked = ref(false)
 provide('isChecked', isChecked)
@@ -21,10 +17,10 @@ provide('isChecked', isChecked)
 const deadline = new Date('09/19/2024 10:22 AM')
 const now = ref(new Date())
 
-const days = ref(null)
-const hours = ref(null)
-const minutes = ref(null)
-const seconds = ref(null)
+// const days = ref(null)
+// const hours = ref(null)
+// const minutes = ref(null)
+// const seconds = ref(null)
 
 const timer = reactive({
   seconds: null,
@@ -46,10 +42,10 @@ function showRemaining() {
     clearInterval(intervalId)
     return 'EXPIRED'
   }
-  timer.days = Math.floor(distance / DAY).toString().padStart(2,'0')
-  timer.hours = Math.floor((distance % DAY) / HOUR).toString().padStart(2,'0')
-  timer.minutes = Math.floor((distance % HOUR) / MINUTE).toString().padStart(2,'0')
-  timer.seconds = Math.floor((distance % MINUTE) / SECOND).toString().padStart(2,'0')
+  timer.days = Math.floor(distance / DAY).toString().padStart(2, '0')
+  timer.hours = Math.floor((distance % DAY) / HOUR).toString().padStart(2, '0')
+  timer.minutes = Math.floor((distance % HOUR) / MINUTE).toString().padStart(2, '0')
+  timer.seconds = Math.floor((distance % MINUTE) / SECOND).toString().padStart(2, '0')
 }
 
 intervalId = setInterval(showRemaining, SECOND)
@@ -59,6 +55,4 @@ onUnmounted(() => {
 })
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

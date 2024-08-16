@@ -1,30 +1,22 @@
 <template>
-    <NuxtLink 
-    :class="`group benefit-card ${$route.path !== '/'? 'Secondary' : 'Primary'}`" 
-    :to="href"
-    :style="`background: url('${getImageUrl('benefitImg' + id)}') center no-repeat; background-size: cover;`">
-      <div 
-      class="infoBlock"
-      >
-        <div
-          :class=" type === 'Secondary' && isActive ? 'activeTitleBlock' : type === 'Tertiary' ? 'activeTitleBlock' : 'titleBlock' "
-        >
-          <span class="title">{{ title }}</span>
-          <img
-            v-if="!isActive"
-            :src="getImageUrl('secured')"
-            class="icon group-hover:scale-125 transition-transform"
-            alt="icon"
-          />
+    <NuxtLink :class="`group benefit-card ${$route.path !== '/' ? 'Secondary' : 'Primary'}`" :to="href"
+        :style="`background: url('${getImageUrl('benefitImg' + id)}') center no-repeat; background-size: cover;`">
+        <div class="infoBlock">
+            <div
+                :class="type === 'Secondary' && isActive ? 'activeTitleBlock' : type === 'Tertiary' ? 'activeTitleBlock' : 'titleBlock'">
+                <span class="title">{{ title }}</span>
+                <img v-if="!isActive" :src="getImageUrl('secured')"
+                    class="icon group-hover:scale-125 transition-transform" alt="icon">
+            </div>
+            <span>{{ text }}</span>
         </div>
-        <span>{{ text }}</span>
-      </div>
     </NuxtLink>
-  </template>
-  
-  <script setup lang="ts">
-  
-  interface BenefitsItemProps {
+</template>
+
+<script setup lang="ts">
+import { getImageUrl } from '../../composables/imageURL';
+
+interface BenefitsItemProps {
     id: number
     image: string
     title: string
@@ -32,9 +24,10 @@
     type: 'Primary' | 'Secondary' | 'Tertiary'
     isActive: boolean
     href: string
-  }
-  const props = defineProps<BenefitsItemProps>()
-  </script>
+}
+defineProps<BenefitsItemProps>()
+</script>
+
 <style lang="scss">
 .benefit-card {
     aspect-ratio: 136/138;
@@ -52,16 +45,17 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal; 
+    line-height: normal;
     border: 1px solid#EB6B43;
 }
 </style>
 <style lang='scss' scoped>
-.Primary{
+.Primary {
     @apply border-none
 }
+
 .Secondary:not(.router-link-active) {
-      @apply grayscale border-none order-1
+    @apply grayscale border-none order-1
 }
 
 .blackWhite {
@@ -75,7 +69,7 @@
 }
 
 .border {
-    border: 1px solid #EB6B43; 
+    border: 1px solid #EB6B43;
 }
 
 .infoBlock {
@@ -93,7 +87,7 @@
 }
 
 .activeTitleBlock {
-    display:flex;
+    display: flex;
     justify-content: flex-start;
 }
 

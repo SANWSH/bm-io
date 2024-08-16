@@ -33,7 +33,7 @@ onMounted(() => {
 
 </script>
 <template>
-    <exchange-list></exchange-list>
+    <exchange-list/>
     <div v-show="windowWidth.value <= 1025" class="p-5 banner-article flex flex-col gap-3">
                 <h1 class="title-2">Bitmafia official</h1>
                 <span>Если у Вас возникли вопросы или проблемы, пожалуйста - обратитесь в наш Telegram канал.</span>
@@ -53,26 +53,26 @@ onMounted(() => {
         </div>
     </div>
 
-    <benefits-list :items="benefits" type="Primary"></benefits-list>
+    <benefits-list :items="benefits" type="Primary"/>
     <img v-for="item in benefits" :key="item.title" :src="getImageUrl(item.image)" alt="">
 
     <div class="exchange-info">
-        <trades-reserve></trades-reserve>
-        <trades-last-exchanges></trades-last-exchanges>
-        <trades-popular></trades-popular>
+        <trades-reserve/>
+        <trades-last-exchanges/>
+        <trades-popular/>
 
         <!-- SWIPER -->
         <div class="swiper-clip-wrapper overflow-clip rounded-2xl w-full basis-10">
             <swiper
-                wrapper-class="swiper-container"
                 ref="swiperEl"
+                wrapper-class="swiper-container"
                 :modules="[SwiperAutoplay]"
                 :slides-per-view="1.2"
                 :grab-cursor="true"
                 :space-between="25"
                 :allow-slide-prev="true"
                 :loop="true"
-                :centeredSlides="true"
+                :centered-slides="true"
                 :autoplay="{
                     delay:4000,
                     disableOnInteraction: false
@@ -93,7 +93,7 @@ onMounted(() => {
             </swiper>
         </div>
     </div>
-    <list class="mb-8"></list>
+    <list class="mb-8"/>
 </template>
 
 <style lang="scss">
